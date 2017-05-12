@@ -1,0 +1,19 @@
+
+== Setup ==
+
+Link the following from a microsites2_resume installation:
+
+* app/models
+* app/assets
+* vendor/assets
+* spec/factories
+* lib
+* data
+
+== Develop ==
+
+ RAILS_ENV=development_production be rails s --port 3009
+
+== Deploy ==
+
+ RAILS_ENV=production bin/rake assets:precompile

@@ -1,0 +1,20 @@
+
+.manager-tags-index
+  .row
+    .large-12.columns
+      %h4 Manager Tags Index
+
+      %ul.large-block-grid-4
+        - @tags.each do |tag|
+          %li
+            %h5= link_to tag.name, manager_tag_path( tag )
+            .small http://#{tag.site.domain}/#{tag.site.lang}
+            = link_to '[~]', edit_manager_tag_path( tag )
+            [x]
+            %ul
+              - if tag.galleries.length > 0
+                %li #{tag.galleries.length} galleries
+              - if tag.reports.length > 0
+                %li #{tag.reports.length} reports
+              - if tag.videos.length > 0
+                %li #{tag.videos.length} videos

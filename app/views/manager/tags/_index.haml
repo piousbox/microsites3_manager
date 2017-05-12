@@ -1,0 +1,12 @@
+
+.manager-videos--index
+  .row
+    .large-12.columns
+      %h2 Tags (#{tags.length})
+
+      = paginate tags, :param_name => :tags_page
+      %ol
+        - tags.each do |tag|
+          %li= tag.name
+      = paginate tags, :param_name => :tags_page
+

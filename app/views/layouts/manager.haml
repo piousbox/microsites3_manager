@@ -1,0 +1,93 @@
+!!!
+%html
+  %head
+    %title
+      = yield :title
+      \| Manager 
+    = stylesheet_link_tag    "application_manager", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = favicon_link_tag       "favicons/manager.ico"
+    
+    = javascript_include_tag 'https://cloud.tinymce.com/stable/tinymce.min.js'
+
+    = csrf_meta_tags
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+  %body
+
+    .main-header.row
+      .large-8.columns
+        %ul
+          %li= link_to 'Home', manager_root_path
+          %li
+            Organizer
+            %ul.hide
+              %li Scratchpad
+              %li Days
+              %li Addressbook
+              
+          %li
+            = link_to '[+]', new_manager_city_path
+            = link_to t('cities.list'), manager_cities_path
+            (#{City.all.length})
+            = trash_image_tag
+            %ul.hide
+              %li Communities
+              %li Events
+              %li
+                Venues
+                %ul
+                  %li Reviews
+              
+          %li
+            = link_to '[+]', new_manager_gallery_path
+            -# = link_to 'Galleries', manager_galleries_path
+            Galleries
+            (#{Gallery.all.length})
+            = link_to '[Title]', manager_galleries_title_path
+            = link_to '[Thumb]', manager_galleries_thumb_path
+            
+          %li.hide
+            Photos
+            -# = link_to '[without gallery]', manager_photos_without_gallery_path
+            
+          %li
+            = link_to '[+]', new_manager_report_path
+            = link_to 'Reports', manager_reports_path
+            (#{Report.all.length})
+            = link_to '[without site]', manager_reports_without_site_path
+            
+          %li
+            = link_to '[+]', new_manager_site_path
+            = link_to 'Sites', manager_sites_path
+            (#{Site.all.length})
+            = link_to trash_image_tag, manager_sites_trash_path
+
+          %li
+            = link_to '[+]', new_manager_tag_path
+            = link_to 'Tags', manager_tags_path
+            (#{Tag.all.length})
+            
+          %li= link_to 'Users', manager_users_path
+          
+      .large-2.columns
+        %ul
+          %li User #{current_user.username}
+    %hr
+
+
+    .row
+      .large-12.columns
+        - if flash[:notice]
+          .alert-box= flash[:notice]
+        - if flash[:error]
+          .alert-box.alert= flash[:error]
+        
+    = yield
+
+    %hr
+    .main-footer.row
+      .large-6.columns
+        %ul
+          %li= button_to 'Sign Out', destroy_user_session_path, :method => :delete
+      .large-6.columns
+        ^__^

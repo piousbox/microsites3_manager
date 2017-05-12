@@ -1,0 +1,28 @@
+
+development: &id001
+  sessions:
+    default:
+      database: ish_production
+      hosts:
+        - 192.168.56.11:27017
+
+development_production: &id001
+  host: localhost
+  database: ish_production
+  sessions:
+    default:
+      database: ish_production
+      hosts:
+        - 192.168.56.11:27017
+
+development_cached: *id001
+production: *id001
+  
+test:
+  host: localhost
+  database: ish_test
+  sessions:
+    default:
+      database: ish_test
+      hosts:
+        - 192.168.56.11:27017

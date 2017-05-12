@@ -1,0 +1,13 @@
+
+.videos-list
+  - if videos.blank?
+    =t ('videos.no_videos')
+  - else
+    - videos.each do |video|
+      .a
+        %h5= link_to (video.name.blank? ? t('videos.no_title') : video.name), video_path( video.youtube_id )
+        .text-center= render 'videos/embed', :video => video
+        = video.descr
+    = paginate videos, :param_name => :videos_page
+  .c
+.c

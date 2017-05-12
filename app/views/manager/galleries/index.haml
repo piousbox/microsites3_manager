@@ -1,0 +1,19 @@
+
+- content_for :title do
+  Manager Galleries Index
+
+- content_for :menu do
+  - # nothing
+
+.row
+  .large-6.columns
+    %h3.right
+      = t('galleries.list')
+      = link_to '[+]', manager_galleries_new_path
+  .large-6.columns
+    = render 'search'
+
+.row
+  .large-12.columns
+    = render 'manager/galleries/menu_secondary'
+    = render 'manager/galleries/list', :galleries => @galleries

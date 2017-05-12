@@ -1,0 +1,39 @@
+
+- url ||= manager_tags_path
+
+= form_for tag, :url => url do |f|
+  .row
+    .large-6.columns
+      = f.label :name
+      = f.text_field :name
+      %br
+      = f.label :name_seo
+      = f.text_field :name_seo      
+    .large-6.columns
+      = f.label :descr
+      = f.text_area :descr
+      
+  .row
+    .large-3.columns
+      = f.label :is_public
+      = f.check_box :is_public
+    .large-3.columns
+      = f.label :is_trash
+      = f.check_box :is_trash
+    .large-3.columns.end
+      = f.label :is_feature
+      = f.check_box :is_feature
+      
+  .row
+    .large-12.columns
+      = f.label :site
+      = select :tag, :site_id, @sites_list
+
+  .row
+    .large-12.columns
+      = f.label :parent_tag
+      = select :tag, :parent_tag_id, @tags_list
+      
+  .row
+    .large-12.columns
+      = f.submit

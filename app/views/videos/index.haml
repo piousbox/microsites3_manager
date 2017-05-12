@@ -1,0 +1,11 @@
+
+.row
+  .large-12.columns
+    .title
+      %h1= t('videos.list')
+
+    .center= render 'ads/src/leaderboard'    
+
+    = render 'videos/list', :videos => @videos
+
+    .center= render 'ads/src/leaderboard'    

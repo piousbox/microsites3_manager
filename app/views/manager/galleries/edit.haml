@@ -1,0 +1,8 @@
+
+.row
+  .large-12.columns
+    %h1
+      = t('galleries.edit')
+      = link_to @gallery.name, manager_gallery_path( @gallery )
+    
+= render 'manager/galleries/form', :gallery => @gallery, :url => manager_gallery_path( @gallery )

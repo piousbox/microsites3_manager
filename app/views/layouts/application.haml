@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Microsites3Manager
+    = stylesheet_link_tag    "application_foundation", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body.Lapplication
+    = render 'application/header_main'
+
+    .row
+      .large-12.columns
+        %p= notice
+        %p= alert
+    
+    = yield
+
+    = render 'application/footer_main'

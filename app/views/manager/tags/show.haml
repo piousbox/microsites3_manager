@@ -1,0 +1,32 @@
+
+.manager-tags-show
+  .row
+    .large-12.columns
+      %h3 Tag: #{@tag.name}
+      %ul
+        %li
+          = link_to '[+]', new_manager_tag_feature_path( @tag )
+          = link_to 'Features', manager_tag_features_path( @tag )
+          (#{@tag.features.length})
+        %li
+          = link_to '[+]', new_manager_tag_newsitem_path( @tag )
+          = link_to 'Newsitems', manager_tag_newsitems_path( @tag )
+          (#{@tag.newsitems.length})
+          
+  .row
+    .large-6.columns
+      %h4 Galleries (#{@tag.galleries.unscoped.where( :is_trash => false ).length})
+      %ul
+        - @tag.galleries.unscoped.where( :is_trash => false ).each do |gallery|
+          %li
+            = link_to '[~]', edit_manager_gallery_path( gallery )
+            = link_to gallery.name, manager_gallery_path( gallery )
+            = render 'manager/galleries/meta', :gallery => gallery
+            
+    .large-6.columns
+      %h4 Reports (#{@tag.reports.unscoped.length})
+      %ul
+        - @tag.reports.unscoped.each do |report|
+          %li
+            = link_to '[~]', edit_manager_report_path( report )
+            = link_to report.name, manager_report_path( report )

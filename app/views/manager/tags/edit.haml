@@ -1,0 +1,5 @@
+
+.row
+  .large-12.columns
+    %h1 Edit tag #{@tag.name}
+= render 'form', :tag => @tag, :url => manager_tag_path( @tag )

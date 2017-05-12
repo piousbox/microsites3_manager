@@ -1,0 +1,33 @@
+
+.manager-galleries-show
+  .row
+    .large-12.columns
+      %h1
+        Gallery #{@gallery.name} (#{@photos.length})
+        
+      = link_to '[~]', edit_manager_gallery_path( @gallery )
+      [x]
+      = @gallery.inspect
+      %hr
+      
+      = render 'manager/galleries/meta', :gallery => @gallery
+      
+      .mini
+        %ul
+          - @photos.each do |photo|
+            %li.item= image_tag photo.photo.url( :mini )
+
+      %hr
+      .spacer{ :style => 'height: 500px' }
+        
+      .thumbs
+        %ul
+          - @photos.each do |photo|
+            %li.item
+              = image_tag photo.photo.url( :thumb )
+
+      .large
+        %ol
+          - @photos.each do |photo|
+            %li.item
+              = image_tag photo.photo.url( :large )
