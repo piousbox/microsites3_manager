@@ -1,10 +1,10 @@
 
 - if defined? site
-  - edit_url   = -> (n) { edit_manager_site_newsitem_path( site, n ) }
-  - delete_url = -> (n) { manager_site_newsitem_path( site, n ) }
+  - edit_url   = ->(n) { edit_manager_site_newsitem_path( site, n ) }
+  - delete_url = ->(n) { manager_site_newsitem_path( site, n ) }
 - if defined? city
-  - edit_url   = -> (n) { edit_manager_city_newsitem_path( city, n ) }
-  - delete_url = -> (n) { manager_city_newsitem_path( city, n ) }
+  - edit_url   = ->(n) { edit_manager_city_newsitem_path( city, n ) }
+  - delete_url = ->(n) { manager_city_newsitem_path( city, n ) }
   
 .row
   .small-12.columns

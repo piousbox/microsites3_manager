@@ -1,4 +1,6 @@
 
 0.0.1 - let's be able to add newsitems to a site
-        and delete newsitems from a site, test-driven
-        lets put tinymce back in, for newsitiems of sites
+        and delete newsitems from a site
+        lets put tinymce back in
+        newsitems, test-driven
+0.0.2 - bugfixes. Being able to manage tgm
