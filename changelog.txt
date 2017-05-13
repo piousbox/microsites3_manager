@@ -5,3 +5,4 @@
         newsitems, test-driven
 0.0.2 - bugfixes. Being able to manage tgm
         editing newsitems touches site
+        lets create new gallery in manager

@@ -26,14 +26,11 @@ class Manager::GalleriesController < Manager::ManagerController
   end
 
   def create
-    @gallery = Gallery.new(params[:gallery].permit(:name, :city, :tag, :is_public, :is_done, :is_feature))
+    @gallery = Gallery.new params[:gallery].permit!
     @gallery.user = current_user
-    @gallery.site = @site
     authorize! :create, @gallery
 
     if @gallery.save
-      # expire_page :controller => 'galleries', :action => 'index', :domainname => @site.domain
-      # expire_page :controller => 'sites', :action => 'show', :domainname => @site.domain
       flash[:notice] = 'Success'
       redirect_to manager_galleries_path
     else
