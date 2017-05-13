@@ -1,11 +1,4 @@
-
 class Manager::SitesController < Manager::ManagerController
-
-  PERMITTED_ATTRIBUTES = [ :domain, :lang, :title, :subhead, :homepage_layout, :layout,
-                           :n_features, :n_newsitems, :is_trash, :is_ads_enabled, :is_private,
-                           :home_redirect_path, :is_video_enabled, :is_resume_enabled, :is_primary
-                         ]
-  
   
   def index
     @sites = Site.all.order_by( :domainname => :desc, :lang => :desc )
@@ -39,7 +32,7 @@ class Manager::SitesController < Manager::ManagerController
 
   def create
     authorize! :create, Site.new
-    @site = Site.new params[:site].permit( PERMITTED_ATTRIBUTES )
+    @site = Site.new params[:site].permit!
     if @site.save
       flash[:notice] = 'Success'
     else
@@ -52,7 +45,7 @@ class Manager::SitesController < Manager::ManagerController
     @site = Site.find params[:id]
     authorize! :update, @site
     
-    if @site.update_attributes params[:site].permit( PERMITTED_ATTRIBUTES )
+    if @site.update_attributes params[:site].permit!
       flash[:notice] = 'Success'
     else
       flash[:error] = 'No Luck'

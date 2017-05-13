@@ -12,4 +12,6 @@ git commit -m "autobuild `date "+%Y%m%d"`"
 git push origin master
 git checkout "$branch"
 git merge master
+git push
 
+echo ok

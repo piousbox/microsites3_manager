@@ -1,10 +1,6 @@
-
 require 'spec_helper'
-
 RSpec.describe Manager::SitesController, :type => :controller do
-
   render_views
-
   before :each do
     setup_users
     sign_in :user, @manager
@@ -57,14 +53,16 @@ RSpec.describe Manager::SitesController, :type => :controller do
     end
   end
   
-  it 'newsitem_delete' do
-    n = Newsitem.new({ :report_id => Report.all.first.id })
-    @site.newsitems << n
-    @site.save
-    old_length = Site.find( @site.id ).newsitems.length
-    delete :newsitem_delete, :site_id => @site.id, :newsitem_id => @site.newsitems[0].id
-    result = Site.find( @site.id )
-    result.newsitems.length.should eql old_length - 1
+  context 'newsitems' do
+    it 'newsitem_delete' do
+      n = Newsitem.new({ :report_id => Report.all.first.id })
+      @site.newsitems << n
+      @site.save
+      old_length = Site.find( @site.id ).newsitems.length
+      delete :newsitem_delete, :site_id => @site.id, :newsitem_id => @site.newsitems[0].id
+      result = Site.find( @site.id )
+      result.newsitems.length.should eql old_length - 1
+    end
   end
 
   it 'edit' do

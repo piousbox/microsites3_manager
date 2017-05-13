@@ -56,16 +56,24 @@ RSpec.describe Manager::NewsitemsController, :type => :controller do
     end
   end
     
-  describe 'delete' do
-    it 'for site' do
+  describe 'for site' do
+    before :each do
       @newsitem = Newsitem.new( :name => 'blahblah' )
       @site.newsitems.push @newsitem
       @site.save
-      count = @site.newsitems.count
-
+      @count = @site.newsitems.count
+    end
+    it 'delete' do
       delete :destroy, :site_id => @site.id, :id => @newsitem.id
       @site.reload
       expect { @site.newsitems.find( @newsitem.id ) }.to raise_error( Mongoid::Errors::DocumentNotFound )
+    end
+    it 'update - touch site' do
+      old = @site.updated_at
+      n = @site.newsitems.first
+      patch :update, :id => n.id, :site_id => @site.id, :newsitem => { :descr => 'new descr' }
+      new = Site.find( @site.id ).updated_at
+      new.should > old
     end
   end
 end

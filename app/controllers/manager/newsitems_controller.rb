@@ -78,6 +78,7 @@ class Manager::NewsitemsController < Manager::ManagerController
   def update
     if params[:site_id]
       @site = Site.find params[:site_id]
+      @site.touch
       @newsitem = @site.newsitems.find params[:id]
       url = edit_manager_site_path( @site )
     end
