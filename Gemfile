@@ -17,8 +17,9 @@ gem 'html2haml'
 
 gem 'paperclip', ['>= 3.4', '!= 4.3.0']
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
-gem 'aws-sdk'
-gem "aws-s3",            :require => "aws/s3"
+gem 'aws-sdk-v1'
+gem 'aws-sdk', '~> 2'
+gem "aws-s3", :require => "aws/s3"
 
 gem 'unicorn'
 gem 'jbuilder'

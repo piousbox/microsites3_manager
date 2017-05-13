@@ -71,5 +71,21 @@ class Manager::GalleriesController < Manager::ManagerController
     redirect_to manager_galleries_title_path
   end
 
+  def j_show
+    @gallery = Gallery.unscoped.find( params[:id] )
+    authorize! :show, @gallery
+    respond_to do |format|
+      format.json do
+        jjj = {}
+        jjj[:photos] = @gallery.photos.map do |ph|
+          { :thumbnail_url => ph.photo.url( :thumb ),
+          :delete_type => 'DELETE',
+          :delete_url => photo_path(ph) }
+        end
+        render :json => jjj
+      end
+    end
+  end
+
 end
 

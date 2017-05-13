@@ -34,12 +34,13 @@ Microsites3Manager::Application.routes.draw do
       resources :videos
     end
 
+    get  'galleries_title',                 :to => 'galleries#index_title', :as => :galleries_title
+    get  'galleries_thumb',                 :to => 'galleries#index_thumb', :as => :galleries_thumb
+    get  'galleries_mini',                  :to => 'galleries#index_mini',  :as => :galleries_mini
+    get  'galleries/j_show/:id',            :to => 'galleries#j_show',      :as => :j_gallery,        :defaults => { :format => :json }
+    post 'galleries/:galleryname/multiadd', :to => 'photos#j_create',       :as => :photos_multiadd
     resources :galleries
-    get 'galleries_title', :to => 'galleries#index_title', :as => :galleries_title
-    get 'galleries_thumb', :to => 'galleries#index_thumb', :as => :galleries_thumb
-    get 'galleries_mini', :to => 'galleries#index_mini', :as => :galleries_mini
 
-    # photos
     get 'photos/without_gallery', :to => 'photos#without_gallery', :as => :photos_without_gallery
     resources :photos
     # get 'photos/:id', :to => 'photos#show', :as => :photo

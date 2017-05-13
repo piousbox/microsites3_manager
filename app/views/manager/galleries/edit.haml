@@ -6,3 +6,4 @@
       = link_to @gallery.name, manager_gallery_path( @gallery )
     
 = render 'manager/galleries/form', :gallery => @gallery, :url => manager_gallery_path( @gallery )
+= render 'manager/photos/multinew', :gallery => @gallery

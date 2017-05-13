@@ -13,7 +13,7 @@
     = csrf_meta_tags
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
   %body
-
+    
     .main-header.row
       .large-8.columns
         %ul
@@ -91,3 +91,8 @@
           %li= button_to 'Sign Out', destroy_user_session_path, :method => :delete
       .large-6.columns
         ^__^
+        
+    -# js
+    %script{ :url => '/js/jquery.ui.widget.js' }
+    %script{ :url => '/js/jquery.iframe-transport.js' }
+    %script{ :url => '/js/jquery.fileupload.js' }
