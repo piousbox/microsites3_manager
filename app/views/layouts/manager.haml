@@ -90,7 +90,12 @@
         %ul
           %li= button_to 'Sign Out', destroy_user_session_path, :method => :delete
       .large-6.columns
-        ^__^
+        %ul
+          %li ^__^
+          %li Environment: #{Rails.env}
+          %li Changelog: #{@latest_changelog}
+          %li Branch: #{@branch}
+        
         
     -# js
     %script{ :url => '/js/jquery.ui.widget.js' }

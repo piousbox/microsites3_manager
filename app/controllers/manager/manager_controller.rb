@@ -5,6 +5,7 @@ class Manager::ManagerController < ApplicationController
 
   prepend_before_filter :authenticate_user!
   before_filter :validate_manager
+  before_filter :do_set
 
   private
 
@@ -27,5 +28,10 @@ class Manager::ManagerController < ApplicationController
     @galleries_list = Gallery.all.list
     @videos_list = Video.all.list
   end
-  
+
+  def do_set
+    @latest_changelog = File.read( Rails.root.join('changelog.txt') ).split("\n").last
+    @branch = `git branch | grep -e "^*" | cut -d' ' -f 2`
+  end
+
 end
