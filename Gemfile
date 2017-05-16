@@ -16,7 +16,6 @@ gem 'aws-sdk', '~> 2'
 gem "aws-s3", :require => "aws/s3"
 gem 'unicorn'
 gem 'jbuilder', '~> 2.4.0'
-gem 'ish_models', :github => 'piousbox/ish_models', :branch => :master
 gem 'activesupport'
 gem "core_extensions"
 gem 'kaminari'
@@ -32,6 +31,8 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'passenger'
 gem 'tzinfo'
+
+gem 'ish_models', :github => 'piousbox/ish_models', :branch => '0.0.8'
 
 group :test do
   gem 'factory_girl_rails'
