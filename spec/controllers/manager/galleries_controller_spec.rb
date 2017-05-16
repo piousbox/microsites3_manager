@@ -1,10 +1,6 @@
-
 require 'spec_helper'
-
 RSpec.describe Manager::GalleriesController, :type => :controller do
-
   render_views
-
   before :each do
     setup_users
     sign_in :user, @manager
@@ -21,14 +17,8 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
       report.save
     end
 
-    Gallery.unscoped.each do |gallery|
-      gallery.remove
-    end
-    @gallery = Gallery.create :name => 'some-gallery-name', :user => @manager, :site => @site
-    flag = @gallery.save
-    puts! @gallery.errors unless flag
-    flag.should eql true
-  end
+    setup_galleries
+ end
 
   it 'index' do
     get :index
@@ -86,7 +76,6 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
     end
   end
 
-
   it 'index_mini' do
     get :index_mini
     response.should be_success
@@ -108,6 +97,7 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
 
     it 'shows private' do
       gallery = Gallery.create :name => 'new-private-gallery', :user => @manager, :is_public => false, :site => @site
+      byebug
       get :show, :id => gallery.id
       response.should be_success
       this_gallery = assigns( :gallery )
@@ -120,6 +110,22 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
     delete :destroy, :id => @gallery.id
     g = Gallery.unscoped.find( @gallery.id )
     g.is_trash.should eql true
+  end
+
+  describe '#create' do
+    it 'creates newsitem for site if public' do
+      n_newsitems = @site.newsitems.count
+      post :create, :gallery => { :name => 'new-1', :user_id => @manager.id, :is_public => true, :site_id => @site.id }
+      @site.reload
+      @site.newsitems.count.should eql( n_newsitems + 1 )
+    end
+
+    it 'does not create newsitem for site if not public' do
+      n_newsitems = @site.newsitems.count
+      post :create, :gallery => { :name => 'new-2', :user_id => @manager.id, :is_public => false, :site_id => @site.id }
+      @site.reload
+      @site.newsitems.count.should eql n_newsitems 
+    end
   end
 
 end

@@ -1,40 +1,22 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.8'
-
-gem 'mongoid', '4.0.2'
-gem 'mongoid_paranoia'
-gem 'bson_ext'
-
-gem 'sass-rails', '~> 4.0'
+gem 'rails', '~> 5.0'
+gem 'mongoid'
+# gem 'bson_ext' # @TODO: don't I need this?
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
-# gem 'coffee-filter'
-# gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'haml'
 gem 'html2haml'
-
-gem 'paperclip', ['>= 3.4', '!= 4.3.0']
+gem 'paperclip'
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'aws-sdk-v1'
 gem 'aws-sdk', '~> 2'
 gem "aws-s3", :require => "aws/s3"
-
 gem 'unicorn'
-gem 'jbuilder'
-
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
-  gem 'byebug'
-end
-
-
+gem 'jbuilder', '~> 2.4.0'
+gem 'ish_models', :github => 'piousbox/ish_models', :branch => :master
 gem 'activesupport'
 gem "core_extensions"
 gem 'kaminari'
@@ -48,10 +30,8 @@ gem 'cancan'
 gem 'kgio'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem "recaptcha", :require => "recaptcha/rails"
-gem 'jquery-fileupload-rails'
 gem 'passenger'
 gem 'tzinfo'
-gem 'eventmachine'
 
 group :test do
   gem 'factory_girl_rails'
@@ -64,20 +44,20 @@ group :test do
 end
 
 group :development, :development_production, :test do
-  gem 'net-ssh', '2.4.0'
+  gem 'net-ssh'
   gem 'capybara'
   gem 'capistrano'
-  gem 'quiet_assets'
   gem 'thin'
-  gem 'delayed_job_mongoid'
   gem 'hpricot'
+  gem 'rspec-rails'
+  gem 'byebug'
 end
 
 group :test, :development, :development_production, :util do
   gem 'simple-rss', :git => "git://github.com/piousbox/simple-rss.git"
-  gem 'htmlentities' # need with simple-rss
+  gem 'htmlentities'
   gem 'resque'
-  gem 'minitest', '~> 4.7.5'
+  gem 'minitest', '~> 5.1.0'
   gem 'test-unit'
 end
 

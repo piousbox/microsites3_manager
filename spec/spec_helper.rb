@@ -109,6 +109,11 @@ class User
   end
 end
 
+def setup_galleries
+  Gallery.clear
+  @gallery = FactoryGirl.create :gallery
+end
+
 def setup_users
   User.unscoped.each { |c| c.remove }
   @user = FactoryGirl.create :user

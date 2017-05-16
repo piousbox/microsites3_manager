@@ -21,3 +21,6 @@ vendor
 
 /config/mongoid.yml
 /config/initializers/s3.rb
+/shared
+
+.byebug_history
