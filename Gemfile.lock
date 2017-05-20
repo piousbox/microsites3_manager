@@ -3,7 +3,7 @@ GIT
   revision: 38fecffbe08c0d072b5c43f2400d9d3c682916b4
   branch: 0.0.8
   specs:
-    ish_models (0.0.30.8)
+    ish_models (0.0.30.9)
       devise (> 0)
       mongoid (~> 6.1.0, >= 6.1.0)
 
@@ -95,6 +95,13 @@ GEM
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
+    coffee-rails (4.2.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.2.x)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     core_extensions (0.0.4)
       activesupport
@@ -349,6 +356,7 @@ DEPENDENCIES
   cancan
   capistrano
   capybara
+  coffee-rails
   core_extensions
   devise
   factory_girl_rails

@@ -26,4 +26,7 @@ Microsites3Manager::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.assets.precompile += %w( application_manager.css application_foundation.css )
+
 end

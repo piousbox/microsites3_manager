@@ -31,6 +31,7 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'passenger'
 gem 'tzinfo'
+gem 'coffee-rails'
 
 gem 'ish_models', :github => 'piousbox/ish_models', :branch => '0.0.8'
 
