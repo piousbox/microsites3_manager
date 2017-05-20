@@ -11,9 +11,9 @@ gem 'haml'
 gem 'html2haml'
 gem 'paperclip'
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
-gem 'aws-sdk-v1'
+# gem 'aws-sdk-v1'
 gem 'aws-sdk', '~> 2'
-gem "aws-s3", :require => "aws/s3"
+# gem "aws-s3", :require => "aws/s3" # project is apandoned
 gem 'unicorn'
 gem 'jbuilder', '~> 2.4.0'
 gem 'activesupport'
