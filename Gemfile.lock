@@ -3,7 +3,8 @@ GIT
   revision: 38fecffbe08c0d072b5c43f2400d9d3c682916b4
   branch: 0.0.8
   specs:
-    ish_models (0.0.30)
+    ish_models (0.0.30.8)
+      devise (> 0)
       mongoid (~> 6.1.0, >= 6.1.0)
 
 GIT

@@ -4,7 +4,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "rails/test_unit/railtie"
 
-# ish_models/railtie
+# require "ish_models/railtie"
 require_relative "initializers/00_s3.rb"
 
 Bundler.require(*Rails.groups)
