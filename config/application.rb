@@ -1,13 +1,12 @@
 require File.expand_path('../boot', __FILE__)
 
-# require 'rails/all'
 require "action_controller/railtie"
 require "action_mailer/railtie"
-# require "active_resource/railtie" # Comment this line for Rails 4.0+
 require "rails/test_unit/railtie"
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# ish_models/railtie
+require_relative "initializers/00_s3.rb"
+
 Bundler.require(*Rails.groups)
 
 module Microsites3Manager
