@@ -50,10 +50,18 @@ class ActionController::TestCase
   Paperclip.options[:log] = false
 end
 
+class Gallery
+  def self.clear
+    if Rails.env.test?
+      self.unscoped.each { |r| r.remove }
+    end
+  end
+end
+
 class Report
   def self.clear
     if Rails.env.test?
-      self.each { |r| r.remove }
+      self.unscoped.each { |r| r.remove }
     end
   end
 end
@@ -61,7 +69,7 @@ end
 class User
   def self.clear
     if Rails.env.test?
-      User.all.each { |r| r.remove }
+      User.unscoped.each { |r| r.remove }
     end
   end
 end

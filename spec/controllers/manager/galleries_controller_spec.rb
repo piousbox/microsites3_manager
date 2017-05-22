@@ -3,7 +3,7 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
   render_views
   before :each do
     setup_users
-    sign_in :user, @manager
+    sign_in @manager
 
     setup_sites
 
@@ -90,15 +90,15 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
 
   describe 'show' do
     it 'does' do
-      get :show, :id => @gallery.id
+      get :show, :params => { :id => @gallery.id }
       response.should be_success
       assigns( :gallery ).should_not eql nil
     end
 
     it 'shows private' do
       gallery = Gallery.create :name => 'new-private-gallery', :user => @manager, :is_public => false, :site => @site
-      byebug
-      get :show, :id => gallery.id
+      # byebug
+      get :show, :params => { :id => gallery.id }
       response.should be_success
       this_gallery = assigns( :gallery )
       this_gallery.is_public.should eql false
@@ -107,7 +107,7 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
 
   it 'delete' do
     @gallery.is_trash.should eql false
-    delete :destroy, :id => @gallery.id
+    delete :destroy, :params => { :id => @gallery.id }
     g = Gallery.unscoped.find( @gallery.id )
     g.is_trash.should eql true
   end

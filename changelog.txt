@@ -7,4 +7,4 @@
         editing newsitems touches site
         lets create new gallery in manager
         adding photos in manager to a gallery
-        Lets generate newsitem for site and city, upon gallery creation
+0.0.3 - Lets generate newsitem for site and city, upon gallery creation
