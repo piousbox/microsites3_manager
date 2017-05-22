@@ -18,14 +18,8 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
     end
 
     setup_galleries
- end
-
-  it 'index' do
-    get :index
-    response.should be_redirect
-    response.should redirect_to manager_galleries_thumb_path
   end
-
+  
   describe 'index_title', :index_title => true do
     before :each do
       %w( one two three ).each do |i|
@@ -88,6 +82,12 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
     assigns( :galleries ).should_not eql nil
   end
 
+  it 'index' do
+    get :index
+    response.should be_redirect
+    response.should redirect_to manager_galleries_thumb_path
+  end
+
   describe 'show' do
     it 'does' do
       get :show, :params => { :id => @gallery.id }
@@ -97,7 +97,6 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
 
     it 'shows private' do
       gallery = Gallery.create :name => 'new-private-gallery', :user => @manager, :is_public => false, :site => @site
-      # byebug
       get :show, :params => { :id => gallery.id }
       response.should be_success
       this_gallery = assigns( :gallery )
@@ -113,16 +112,34 @@ RSpec.describe Manager::GalleriesController, :type => :controller do
   end
 
   describe '#create' do
+    before :each do
+      City.unscoped.map { |c| c.destroy }
+      @bogota = FactoryGirl.create :bogota
+      @new_gallery_attrs = { :name => 'new-1', :user_id => @manager.id, :is_public => true, 
+                             :site_id => @site.id, :city_id => @bogota.id }
+    end
+
+    it 'creates newsitem for city if public, does not create if not public' do
+      n = @bogota.newsitems.count
+      post :create, :gallery => @new_gallery_attrs
+      City.find( @bogota.id ).newsitems.count.should eql(n + 1 )
+
+      @new_gallery_attrs[:is_public] = false
+      post :create, :gallery => @new_gallery_attrs
+      City.find( @bogota.id ).newsitems.count.should eql( n + 1 ) # same count as before
+    end
+    
     it 'creates newsitem for site if public' do
       n_newsitems = @site.newsitems.count
-      post :create, :gallery => { :name => 'new-1', :user_id => @manager.id, :is_public => true, :site_id => @site.id }
+      post :create, :gallery => @new_gallery_attrs
       @site.reload
       @site.newsitems.count.should eql( n_newsitems + 1 )
     end
 
     it 'does not create newsitem for site if not public' do
       n_newsitems = @site.newsitems.count
-      post :create, :gallery => { :name => 'new-2', :user_id => @manager.id, :is_public => false, :site_id => @site.id }
+      @new_gallery_attrs[:is_public] = false
+      post :create, :gallery => @new_gallery_attrs
       @site.reload
       @site.newsitems.count.should eql n_newsitems 
     end
