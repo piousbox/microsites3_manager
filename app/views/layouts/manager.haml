@@ -40,10 +40,8 @@
               
           %li
             = link_to '[+]', new_manager_gallery_path
-            -# = link_to 'Galleries', manager_galleries_path
-            Galleries
+            = link_to 'Galleries', manager_galleries_title_path
             (#{Gallery.all.length})
-            = link_to '[Title]', manager_galleries_title_path
             = link_to '[Thumb]', manager_galleries_thumb_path
             
           %li.hide
