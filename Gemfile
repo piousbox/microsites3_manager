@@ -43,6 +43,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'ruby-prof'
   gem 'simplecov', :require => false
+  gem 'rails-controller-testing'
 end
 
 group :development, :development_production, :test do

@@ -3,9 +3,9 @@ class Manager::ManagerController < ApplicationController
 
   layout 'manager'
 
-  prepend_before_filter :authenticate_user!
-  before_filter :validate_manager
-  before_filter :do_set
+  prepend_before_action :authenticate_user!
+  before_action :validate_manager
+  before_action :do_set
 
   private
 

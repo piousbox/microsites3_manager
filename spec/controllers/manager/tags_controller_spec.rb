@@ -1,10 +1,6 @@
-
 require 'spec_helper'
-
 RSpec.describe Manager::TagsController, :type => :controller do
-
   render_views
-
   before :each do
     setup_users
     sign_in :user, @manager
